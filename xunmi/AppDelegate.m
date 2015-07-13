@@ -6,6 +6,8 @@
 //  Copyright (c) 2015年 xunmi. All rights reserved.
 //
 
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
@@ -17,6 +19,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    // Customise Tab bar and Nav Bar #0285f0
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:2/255.0 green:133/255.0 blue:240/255.0 alpha:1]];
+        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    }
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    
+    // Status bar white
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     return YES;
 }
 
