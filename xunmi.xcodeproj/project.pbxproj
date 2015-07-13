@@ -25,6 +25,9 @@
 		CE8EDF671B2885D2002E9FE2 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8EDF651B2885D2002E9FE2 /* EGORefreshTableHeaderView.m */; };
 		CE8EDF6A1B288653002E9FE2 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8EDF691B288653002E9FE2 /* ListViewController.m */; };
 		CE8EDF6C1B288AC0002E9FE2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8EDF6B1B288AC0002E9FE2 /* QuartzCore.framework */; };
+		CE8EE01D1B53FF1D00EF0946 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8EE01C1B53FF1D00EF0946 /* UIKit.framework */; };
+		CE8EE01F1B53FF3200EF0946 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8EE01E1B53FF3200EF0946 /* Foundation.framework */; };
+		CE8EE0211B53FF3A00EF0946 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8EE0201B53FF3A00EF0946 /* CoreGraphics.framework */; };
 		CEBF839B1B1F4B0900CAEF69 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBF839A1B1F4B0900CAEF69 /* SettingsViewController.m */; };
 		CEBF83AB1B21ED9700CAEF69 /* SCNavTabBar.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CEBF83A21B21ED9700CAEF69 /* SCNavTabBar.bundle */; };
 		CEBF83AC1B21ED9700CAEF69 /* SCNavTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBF83A51B21ED9700CAEF69 /* SCNavTabBarController.m */; };
@@ -81,6 +84,9 @@
 		CE8EDF681B288653002E9FE2 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		CE8EDF691B288653002E9FE2 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		CE8EDF6B1B288AC0002E9FE2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		CE8EE01C1B53FF1D00EF0946 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CE8EE01E1B53FF3200EF0946 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CE8EE0201B53FF3A00EF0946 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		CEBF83991B1F4B0900CAEF69 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		CEBF839A1B1F4B0900CAEF69 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		CEBF83A11B21ED9700CAEF69 /* CommonMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonMacro.h; sourceTree = "<group>"; };
@@ -125,6 +131,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE8EE0211B53FF3A00EF0946 /* CoreGraphics.framework in Frameworks */,
+				CE8EE01F1B53FF3200EF0946 /* Foundation.framework in Frameworks */,
+				CE8EE01D1B53FF1D00EF0946 /* UIKit.framework in Frameworks */,
 				CE8EDF6C1B288AC0002E9FE2 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -176,6 +185,13 @@
 				CE8EDF651B2885D2002E9FE2 /* EGORefreshTableHeaderView.m */,
 			);
 			path = RefreshTableHeaderView;
+			sourceTree = "<group>";
+		};
+		CE8EE0181B53FE1B00EF0946 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Delegate;
 			sourceTree = "<group>";
 		};
 		CEBF839C1B20928A00CAEF69 /* Utils */ = {
@@ -230,6 +246,9 @@
 		CEC244271B1B516B00B11470 = {
 			isa = PBXGroup;
 			children = (
+				CE8EE0201B53FF3A00EF0946 /* CoreGraphics.framework */,
+				CE8EE01E1B53FF3200EF0946 /* Foundation.framework */,
+				CE8EE01C1B53FF1D00EF0946 /* UIKit.framework */,
 				CE8EDF6B1B288AC0002E9FE2 /* QuartzCore.framework */,
 				CE8EDF611B2885D2002E9FE2 /* RefreshTableHeaderView */,
 				CEBF83B21B243E3700CAEF69 /* GSIndeterminateProgress */,
@@ -253,6 +272,7 @@
 		CEC244321B1B516B00B11470 /* xunmi */ = {
 			isa = PBXGroup;
 			children = (
+				CE8EE0181B53FE1B00EF0946 /* Delegate */,
 				CE6579491B41A2EA00A08A2A /* Resources */,
 				CE8EDF581B2743A8002E9FE2 /* Views */,
 				CEBF839C1B20928A00CAEF69 /* Utils */,

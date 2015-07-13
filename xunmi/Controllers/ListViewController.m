@@ -24,16 +24,17 @@
     
     if (_refreshHeaderView == nil) {
         float height = self.tableViewImage.bounds.size.height;
-        EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - height, self.tableViewImage.bounds.size.width, height)];
+//        EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - height, self.tableViewImage.bounds.size.width, height)];
+        EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
         view.delegate = self;
-        [self.tableViewImage addSubview:view];
+        [self.tableView addSubview:view];
         _refreshHeaderView = view;
     }
     [self addTableView];
     
     [_refreshHeaderView refreshLastUpdatedDate];
     
-    [self setExtraCellLineHidden:self.tableViewImage];
+    [self setExtraCellLineHidden:self.tableView];
 }
 
 - (id) initWithNSArray:(NSArray *) array {
@@ -96,13 +97,13 @@
     [self.tableViewImage reloadData];
     _reloading = YES;
     
-    if ([_delegate respondsToSelector:@selector(refreshData: FromView:)]) {
-        [_delegate refreshData:^{
-            [self doneLoadingTableViewData];
-        } FromView:self];
-    }else{
-        [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
-    }
+//    if ([_delegate respondsToSelector:@selector(refreshData: FromView:)]) {
+//        [_delegate refreshData:^{
+//            [self doneLoadingTableViewData];
+//        } FromView:self];
+//    }else{
+//        [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
+//    }
 }
 
 - (void) reloadTableViewDataSourceWithArray:(NSArray *) array  {
@@ -116,7 +117,7 @@
 
 - (void) doneLoadingTableViewData {
     _reloading = NO;
-    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableViewImage];
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
 }
 
 #pragma mark EGORefreshTableHeaderDelegate Methods
@@ -145,7 +146,8 @@
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    return (toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+//    return (toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    return YES;
 }
 
 //隐藏多余的分割线

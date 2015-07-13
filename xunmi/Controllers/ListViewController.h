@@ -9,29 +9,29 @@
 #import <UIKit/UIKit.h>
 #import "EGORefreshTableHeaderView.h"
 
-@class ListViewController;
-@protocol CustomTableViewDelegate <NSObject>
-@required;
--(float)heightForRowAthIndexPath:(UITableView *)aTableView IndexPath:(NSIndexPath *)aIndexPath FromView:(ListViewController *)aView;
--(void)didSelectedRowAthIndexPath:(UITableView *)aTableView IndexPath:(NSIndexPath *)aIndexPath FromView:(ListViewController *)aView;
--(void)loadData:(void(^)(int aAddedRowCount))complete FromView:(ListViewController *)aView;
--(void)refreshData:(void(^)())complete FromView:(ListViewController *)aView;
-@optional
-//- (void)tableViewWillBeginDragging:(UIScrollView *)scrollView;
-//- (void)tableViewDidScroll:(UIScrollView *)scrollView;
-////- (void)tableViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate;
-//- (BOOL)tableViewEgoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view FromView:(CustomTableView *)aView;
-@end
+//@class ListViewController;
+//@protocol CustomTableViewDelegate <NSObject>
+//@required;
+//-(float)heightForRowAthIndexPath:(UITableView *)aTableView IndexPath:(NSIndexPath *)aIndexPath FromView:(ListViewController *)aView;
+//-(void)didSelectedRowAthIndexPath:(UITableView *)aTableView IndexPath:(NSIndexPath *)aIndexPath FromView:(ListViewController *)aView;
+//-(void)loadData:(void(^)(int aAddedRowCount))complete FromView:(ListViewController *)aView;
+//-(void)refreshData:(void(^)())complete FromView:(ListViewController *)aView;
+//@optional
+////- (void)tableViewWillBeginDragging:(UIScrollView *)scrollView;
+////- (void)tableViewDidScroll:(UIScrollView *)scrollView;
+//////- (void)tableViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate;
+////- (BOOL)tableViewEgoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view FromView:(CustomTableView *)aView;
+//@end
+//
+//@protocol CustomTableViewDataSource <NSObject>
+//@required;
+//-(NSInteger)numberOfRowsInTableView:(UITableView *)aTableView InSection:(NSInteger)section FromView:(ListViewController *)aView;
+//-(UITableViewCell *)cellForRowInTableView:(UITableView *)aTableView IndexPath:(NSIndexPath *)aIndexPath FromView:(ListViewController *)aView;
+//
+//@end
 
-@protocol CustomTableViewDataSource <NSObject>
-@required;
--(NSInteger)numberOfRowsInTableView:(UITableView *)aTableView InSection:(NSInteger)section FromView:(ListViewController *)aView;
--(UITableViewCell *)cellForRowInTableView:(UITableView *)aTableView IndexPath:(NSIndexPath *)aIndexPath FromView:(ListViewController *)aView;
-
-@end
-
-@interface ListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate, UITableViewDelegate, UITableViewDataSource, EGORefreshTableHeaderDelegate>
-{
+@interface ListViewController : UITableViewController<UITableViewDataSource,UITableViewDelegate, EGORefreshTableHeaderDelegate>
+{	
     EGORefreshTableHeaderView *_refreshHeaderView;
     BOOL _reloading;
 }
@@ -45,7 +45,7 @@
 
 - (id) initWithNSArray:(NSArray *) array;
 
-@property (nonatomic,assign) id<CustomTableViewDataSource> dataSource;
-@property (nonatomic,assign) id<CustomTableViewDelegate>  delegate;
+//@property (nonatomic,assign) id<CustomTableViewDataSource> dataSource;
+//@property (nonatomic,assign) id<CustomTableViewDelegate>  delegate;
 
 @end
