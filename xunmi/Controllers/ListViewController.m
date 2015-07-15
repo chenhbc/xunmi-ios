@@ -8,12 +8,15 @@
 
 #import "ListViewController.h"
 #import "ListViewCell.h"
+#import "MJRefresh.h"
 
 @interface ListViewController ()
 
 @end
 
 @implementation ListViewController
+
+int CURRENT_PAGE = 0;
 
 @synthesize imageArray;
 @synthesize tableViewImage;
@@ -22,28 +25,40 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    if (_refreshHeaderView == nil) {
-        float height = self.tableViewImage.bounds.size.height;
-//        EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - height, self.tableViewImage.bounds.size.width, height)];
-        EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
-        view.delegate = self;
-        [self.tableView addSubview:view];
-        _refreshHeaderView = view;
-    }
-    [self addTableView];
+//    [self addTableView];
     
-    [_refreshHeaderView refreshLastUpdatedDate];
-    
-    [self setExtraCellLineHidden:self.tableView];
+//    __weak __typeof(self) weakSelf = self;
 }
 
-- (id) initWithNSArray:(NSArray *) array {
+- (id) initWithBlock:(NSArray * (^) (int page)) refreshingBlock {
     self = [super init];
-    
     if(self) {
-        self.imageArray = array;
+        // 必须先做这一步，才有刷新操作
         [self addTableView];
+        
+        // 下拉刷新，设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+        self.tableViewImage.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            self.imageArray = [refreshingBlock(0) mutableCopy];
+            
+            [self reloadTableViewDataSource];
+        }];
+        
+        // 上拉加载更多,设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+        self.tableViewImage.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            // 每次加载更多之前页数+1
+            CURRENT_PAGE ++;
+            
+            [self.imageArray addObjectsFromArray:refreshingBlock(CURRENT_PAGE)];
+            
+            [self reloadTableViewDataSource];
+        }];
     }
+    
+    // 马上进入刷新状态
+    [self.tableViewImage.header beginRefreshing];
+    
+    [self setExtraCellLineHidden:self.tableViewImage];
+    
     return self;
 }
 
@@ -94,65 +109,23 @@
 
 #pragma mark -refresh-
 - (void) reloadTableViewDataSource {
+    // 刷新表格
     [self.tableViewImage reloadData];
-    _reloading = YES;
     
-//    if ([_delegate respondsToSelector:@selector(refreshData: FromView:)]) {
-//        [_delegate refreshData:^{
-//            [self doneLoadingTableViewData];
-//        } FromView:self];
-//    }else{
-//        [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
-//    }
+    // 拿到当前的下拉刷新控件，结束刷新状态
+    [self.tableViewImage.header endRefreshing];
+    [self.tableViewImage.footer endRefreshing];
+    
 }
 
 - (void) reloadTableViewDataSourceWithArray:(NSArray *) array  {
     self.imageArray = array;
-    _reloading = YES;
-//    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableViewImage reloadData];
-//    });
-    NSLog(@"%lu", (unsigned long)[self.imageArray count]);
-}
 
-- (void) doneLoadingTableViewData {
-    _reloading = NO;
-    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
-}
-
-#pragma mark EGORefreshTableHeaderDelegate Methods
-- (void) egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView *)view {
-    NSLog(@"reload data....");
-    [self reloadTableViewDataSource];
-    [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
-}
-
-- (BOOL) egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView *)view {
-    return _reloading; // should return if data source model is reloading
-}
-
-- (NSDate *) egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView *)view {
-    return [NSDate date]; // should return date data source was last changed
-}
-
-#pragma mark UIScrollViewDelegate Methods
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
-}
-
-- (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    [_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
-}
-
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-//    return (toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-    return YES;
+    [self.tableViewImage reloadData];
 }
 
 //隐藏多余的分割线
--(void)setExtraCellLineHidden:(UITableView*)tableView
-{
+-(void)setExtraCellLineHidden:(UITableView*)tableView {
     UIView *view = [[UIView alloc] init];
     view.backgroundColor = [UIColor clearColor];
     [tableView setTableFooterView:view];

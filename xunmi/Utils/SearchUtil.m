@@ -15,6 +15,8 @@
 
 NSString * const kUrl = @"www.jwss.cc";
 
+int PAGE_NUMBER = 10;
+
 @implementation SearchUtil
 
 - (NSString *)getKeywordsUrl:(NSString *) keyword {
@@ -48,7 +50,7 @@ NSString * const kUrl = @"www.jwss.cc";
 }
 
 - (NSString *)searchBaiduYun:(NSString *) keyword:(int) page {
-    NSString *urlString = [NSString stringWithFormat:@"%@/?q=%@+site:yun.baidu.com+OR+site:pan.baidu.com&pn=%d", kUrl, [self getKeywordsUrl:keyword], page];
+    NSString *urlString = [NSString stringWithFormat:@"%@/?q=%@+site:yun.baidu.com+OR+site:pan.baidu.com&pn=%d", kUrl, [self getKeywordsUrl:keyword], page * PAGE_NUMBER];
     
     return [self search:urlString];
 }
@@ -60,7 +62,7 @@ NSString * const kUrl = @"www.jwss.cc";
 }
 
 - (NSString *)searchHuaweiWangpan:(NSString *) keyword:(int) page {
-    NSString *urlString = [NSString stringWithFormat:@"%@/?q=%@+site:dl.dbank.com+OR+site:dl.vmall.com&pn=%d", kUrl, [self getKeywordsUrl:keyword], page];
+    NSString *urlString = [NSString stringWithFormat:@"%@/?q=%@+site:dl.dbank.com+OR+site:dl.vmall.com&pn=%d", kUrl, [self getKeywordsUrl:keyword], page * PAGE_NUMBER];
     
     return [self search:urlString];
 }

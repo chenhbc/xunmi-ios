@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EGORefreshTableHeaderView.h"
 
 //@class ListViewController;
 //@protocol CustomTableViewDelegate <NSObject>
@@ -30,22 +29,13 @@
 //
 //@end
 
-@interface ListViewController : UITableViewController<UITableViewDataSource,UITableViewDelegate, EGORefreshTableHeaderDelegate>
-{	
-    EGORefreshTableHeaderView *_refreshHeaderView;
-    BOOL _reloading;
-}
+@interface ListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
-@property (retain, nonatomic) NSArray *imageArray;
+@property (retain, nonatomic) NSMutableArray *imageArray;
 @property (retain, nonatomic) UITableView *tableViewImage;
 
-- (void)reloadTableViewDataSource;
-- (void)doneLoadingTableViewData;
 - (void)reloadTableViewDataSourceWithArray:(NSArray *) array;
 
-- (id) initWithNSArray:(NSArray *) array;
-
-//@property (nonatomic,assign) id<CustomTableViewDataSource> dataSource;
-//@property (nonatomic,assign) id<CustomTableViewDelegate>  delegate;
+- (id) initWithBlock:(NSArray * (^) (int page)) refreshingBlock;
 
 @end

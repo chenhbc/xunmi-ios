@@ -38,9 +38,9 @@
     
     [self initProgress];
     
-    [progressView startAnimating];
+//    [progressView startAnimating];
     
-    [self searchOnline];
+//    [self searchOnline];
 }
 
 - (void)initProgress {
@@ -53,14 +53,19 @@
 }
 
 - (void)initNavTabBar {
-//    NSArray *array = [NSArray arrayWithObjects:@"aa", @"bb", @"cc", nil];
-    baiduYunViewController = [[ListViewController alloc] init];
+    baiduYunViewController = [[ListViewController alloc] initWithBlock:^NSArray *(int page) {
+        return [self searchOnBaiduYun:page];
+    }];
     baiduYunViewController.title = @"百度云";
     
-    weipanViewController = [[ListViewController alloc] init];
+    weipanViewController = [[ListViewController alloc] initWithBlock:^NSArray *(int page) {
+        return [self searchOnWeipan:page];
+    }];
     weipanViewController.title = @"微盘";
     
-    huaweiWangpanViewController = [[ListViewController alloc] init];
+    huaweiWangpanViewController = [[ListViewController alloc] initWithBlock:^NSArray *(int page) {
+        return [self searchOnHuaweiWangpan:page];
+    }];
     huaweiWangpanViewController.title = @"华为网盘";
     
     SCNavTabBarController *navTabBarController = [[SCNavTabBarController alloc] init];
@@ -74,34 +79,9 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)searchOnline {
-//    __block NSArray *jsonObj;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [progressView startAnimating];
-        
-        [self searchOnBaiduYun];
-        
-        [progressView stopAnimating];
-    });
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [progressView startAnimating];
-        
-        [self searchOnWeipan];
-        
-        [progressView stopAnimating];
-    });
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [progressView startAnimating];
-        
-        [self searchOnHuaweiWangpan];
-        
-        [progressView stopAnimating];
-    });
-}
-
-- (void) searchOnBaiduYun {
+- (NSArray *) searchOnBaiduYun:(int) page {
     NSArray *jsonObj;
-    NSString *resultStr = [[[SearchUtil alloc] init] searchBaiduYun:_searchText : 0];
+    NSString *resultStr = [[[SearchUtil alloc] init] searchBaiduYun:_searchText : page];
     
     NSError *error;
     NSString *regulaStr = @"<h3 class=\\\\\"r\\\\\"(.+?)>(.+?)<a href=\\\\\"(.+?)\\\\\" target=\\\\\"_blank\\\\\">(.+?)<\\\\/a>";
@@ -132,12 +112,13 @@
     jsonObj = [NSJSONSerialization JSONObjectWithData:jsonData
                                               options:NSJSONReadingAllowFragments error:&error];
     
-    [baiduYunViewController reloadTableViewDataSourceWithArray:jsonObj];
+//    [baiduYunViewController reloadTableViewDataSourceWithArray:jsonObj];
+    return jsonObj;
 }
 
-- (void) searchOnWeipan {
+- (NSArray *)searchOnWeipan:(int) page {
     NSArray *jsonObj;
-    NSString *resultStr = [[[SearchUtil alloc] init] searchWeipan:_searchText : 0];
+    NSString *resultStr = [[[SearchUtil alloc] init] searchWeipan:_searchText : page];
     
     NSError *error;
     NSString *regulaStr = @"<div class=\"sort_name_detail\"><a href=\"(.+?)\" target=\"_blank\" title=\"(.+?)\">";
@@ -168,12 +149,13 @@
     jsonObj = [NSJSONSerialization JSONObjectWithData:jsonData
                                               options:NSJSONReadingAllowFragments error:&error];
     
-    [weipanViewController reloadTableViewDataSourceWithArray:jsonObj];
+//    [weipanViewController reloadTableViewDataSourceWithArray:jsonObj];
+    return jsonObj;
 }
 
-- (void)searchOnHuaweiWangpan {
+- (NSArray *) searchOnHuaweiWangpan: (int) page {
     NSArray *jsonObj;
-    NSString *resultStr = [[[SearchUtil alloc] init] searchHuaweiWangpan:_searchText : 0];
+    NSString *resultStr = [[[SearchUtil alloc] init] searchHuaweiWangpan:_searchText : page];
     
     NSError *error;
     NSString *regulaStr = @"<h3 class=\\\\\"r\\\\\"(.+?)>(.+?)<a href=\\\\\"(.+?)\\\\\" target=\\\\\"_blank\\\\\">(.+?)<\\\\/a>";
@@ -204,12 +186,11 @@
     jsonObj = [NSJSONSerialization JSONObjectWithData:jsonData
                                               options:NSJSONReadingAllowFragments error:&error];
     
-    [huaweiWangpanViewController reloadTableViewDataSourceWithArray:jsonObj];
+    //    [huaweiWangpanViewController reloadTableViewDataSourceWithArray:jsonObj];
+    return jsonObj;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-//    [progressView stopAnimating];
-    
     [super viewDidAppear:animated];
 }
 
