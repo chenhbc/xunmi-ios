@@ -21,7 +21,6 @@
 		CE8EDF5C1B2743DD002E9FE2 /* ListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8EDF5A1B2743DD002E9FE2 /* ListViewCell.m */; };
 		CE8EDF5D1B2743DD002E9FE2 /* ListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE8EDF5B1B2743DD002E9FE2 /* ListViewCell.xib */; };
 		CE8EDF601B2748CD002E9FE2 /* ListView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8EDF5F1B2748CD002E9FE2 /* ListView.m */; };
-		CE8EDF661B2885D2002E9FE2 /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8EDF631B2885D2002E9FE2 /* CircleView.m */; };
 		CE8EDF6A1B288653002E9FE2 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8EDF691B288653002E9FE2 /* ListViewController.m */; };
 		CE8EDF6C1B288AC0002E9FE2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8EDF6B1B288AC0002E9FE2 /* QuartzCore.framework */; };
 		CE8EE01D1B53FF1D00EF0946 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8EE01C1B53FF1D00EF0946 /* UIKit.framework */; };
@@ -95,8 +94,6 @@
 		CE8EDF5B1B2743DD002E9FE2 /* ListViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ListViewCell.xib; path = Views/ListViewCell.xib; sourceTree = "<group>"; };
 		CE8EDF5E1B2748CD002E9FE2 /* ListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListView.h; path = Views/ListView.h; sourceTree = "<group>"; };
 		CE8EDF5F1B2748CD002E9FE2 /* ListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListView.m; path = Views/ListView.m; sourceTree = "<group>"; };
-		CE8EDF621B2885D2002E9FE2 /* CircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleView.h; sourceTree = "<group>"; };
-		CE8EDF631B2885D2002E9FE2 /* CircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleView.m; sourceTree = "<group>"; };
 		CE8EDF681B288653002E9FE2 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		CE8EDF691B288653002E9FE2 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		CE8EDF6B1B288AC0002E9FE2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -228,15 +225,6 @@
 				CE8EDF5F1B2748CD002E9FE2 /* ListView.m */,
 			);
 			name = Views;
-			sourceTree = "<group>";
-		};
-		CE8EDF611B2885D2002E9FE2 /* RefreshTableHeaderView */ = {
-			isa = PBXGroup;
-			children = (
-				CE8EDF621B2885D2002E9FE2 /* CircleView.h */,
-				CE8EDF631B2885D2002E9FE2 /* CircleView.m */,
-			);
-			path = RefreshTableHeaderView;
 			sourceTree = "<group>";
 		};
 		CE8EE0181B53FE1B00EF0946 /* Delegate */ = {
@@ -395,7 +383,6 @@
 				CE8EE01E1B53FF3200EF0946 /* Foundation.framework */,
 				CE8EE01C1B53FF1D00EF0946 /* UIKit.framework */,
 				CE8EDF6B1B288AC0002E9FE2 /* QuartzCore.framework */,
-				CE8EDF611B2885D2002E9FE2 /* RefreshTableHeaderView */,
 				CEBF83B21B243E3700CAEF69 /* GSIndeterminateProgress */,
 				CE8EE0241B540B2A00EF0946 /* MJRefresh */,
 				CEBF83A01B21ED9700CAEF69 /* SCNavTabBar */,
@@ -607,7 +594,6 @@
 			files = (
 				CE8EDF5C1B2743DD002E9FE2 /* ListViewCell.m in Sources */,
 				CEC244391B1B516B00B11470 /* AppDelegate.m in Sources */,
-				CE8EDF661B2885D2002E9FE2 /* CircleView.m in Sources */,
 				CE8EE0921B540FE600EF0946 /* MJRefreshBackNormalFooter.m in Sources */,
 				CE8EE07C1B540F8800EF0946 /* MJRefreshHeader.m in Sources */,
 				CE8EE09B1B540FF100EF0946 /* MJRefreshAutoNormalFooter.m in Sources */,

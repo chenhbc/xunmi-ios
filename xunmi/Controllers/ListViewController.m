@@ -24,10 +24,6 @@ int CURRENT_PAGE = 0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-//    [self addTableView];
-    
-//    __weak __typeof(self) weakSelf = self;
 }
 
 - (id) initWithBlock:(NSArray * (^) (int page)) refreshingBlock {
@@ -93,7 +89,7 @@ int CURRENT_PAGE = 0;
     cell.linkLabel.text = [detail objectForKey:@"url"];
     
     cell.imageView.image = [UIImage imageNamed:@"unknown.png"];
-    [cell.imageView setFrame:CGRectMake(0, 0, 50, 50)];
+//    [cell.imageView setFrame:CGRectMake(0, 0, 50, 50)];
 //    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     return cell;

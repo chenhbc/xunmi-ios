@@ -36,11 +36,7 @@
     
     [self initNavTabBar];
     
-    [self initProgress];
-    
-//    [progressView startAnimating];
-    
-//    [self searchOnline];
+//    [self initProgress];
 }
 
 - (void)initProgress {
