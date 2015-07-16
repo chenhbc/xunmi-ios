@@ -32,6 +32,8 @@ int CURRENT_PAGE = 0;
         // 必须先做这一步，才有刷新操作
         [self addTableView];
         
+//        [self.navigationController = [[UINavigationController alloc] initWithRootViewController:<#(UIViewController *)#>];
+        
         // 下拉刷新，设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
         self.tableViewImage.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             self.imageArray = [refreshingBlock(0) mutableCopy];
@@ -103,6 +105,44 @@ int CURRENT_PAGE = 0;
     
 }
 
+// 允许长按菜单
+- (BOOL)tableView:(UITableView *)tableView shouldShowMenuForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canPerformAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
+    // 只显示复制按钮
+    if (action == @selector(copy:)) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
+    if (action == @selector(copy:)) {
+        NSDictionary *detail = [self.imageArray objectAtIndex:indexPath.row];
+        NSString *url = [detail objectForKey:@"url"];
+        
+        [UIPasteboard generalPasteboard].string = [url stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSDictionary *detail = [self.imageArray objectAtIndex:indexPath.row];
+    
+//    ResourceDetailViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"resourceDetailViewController"];
+//    
+//    controller.title = [self flattenHTML:[detail objectForKey:@"title"]];
+//    controller.url = [detail objectForKey:@"url"];
+//    
+//    [self.navigationController pushViewController:controller animated:YES];
+    
+    
+//    resultController.title = [self flattenHTML:[detail objectForKey:@"title"]];
+//    resultController.url = [detail objectForKey:@"url"];
+}
+
 #pragma mark -refresh-
 - (void) reloadTableViewDataSource {
     // 刷新表格
@@ -115,7 +155,7 @@ int CURRENT_PAGE = 0;
 }
 
 - (void) reloadTableViewDataSourceWithArray:(NSArray *) array  {
-    self.imageArray = array;
+    self.imageArray = [array mutableCopy];
 
     [self.tableViewImage reloadData];
 }
