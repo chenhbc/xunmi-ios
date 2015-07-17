@@ -9,6 +9,7 @@
 #import "ListViewController.h"
 #import "ListViewCell.h"
 #import "MJRefresh.h"
+#import "ResourceDetailViewController.h"
 
 @interface ListViewController ()
 
@@ -131,16 +132,17 @@ int CURRENT_PAGE = 0;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *detail = [self.imageArray objectAtIndex:indexPath.row];
     
+    // 由于当前ViewController和ResourceDetailController不在同一个storyboard中，所以不能用以下方式获取
+    // 也不能用alloc init的方式
 //    ResourceDetailViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"resourceDetailViewController"];
-//    
-//    controller.title = [self flattenHTML:[detail objectForKey:@"title"]];
-//    controller.url = [detail objectForKey:@"url"];
-//    
-//    [self.navigationController pushViewController:controller animated:YES];
     
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     
-//    resultController.title = [self flattenHTML:[detail objectForKey:@"title"]];
-//    resultController.url = [detail objectForKey:@"url"];
+    ResourceDetailViewController *resultController = [storyboard instantiateViewControllerWithIdentifier:@"resourceDetailViewController"];
+    resultController.name = [self flattenHTML:[detail objectForKey:@"title"]];
+    resultController.url = [detail objectForKey:@"url"];
+    
+    [self.navigationController pushViewController:resultController animated:YES];
 }
 
 #pragma mark -refresh-
