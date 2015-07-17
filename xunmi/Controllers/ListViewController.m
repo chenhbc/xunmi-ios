@@ -143,6 +143,8 @@ int CURRENT_PAGE = 0;
     resultController.url = [detail objectForKey:@"url"];
     
     [self.navigationController pushViewController:resultController animated:YES];
+    
+    [self.tableViewImage deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark -refresh-
