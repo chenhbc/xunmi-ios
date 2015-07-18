@@ -8,14 +8,12 @@
 
 #import "SearchResultViewController.h"
 
-#import "GSIndeterminateProgressView.h"
 #import "SCNavTabBarController.h"
 #import "CommonMacro.h"
 #import "SearchUtil.h"
 #import "ListViewController.h"
 
 @interface SearchResultViewController () {
-    GSIndeterminateProgressView * progressView;
     
     ListViewController *baiduYunViewController;
     
@@ -35,17 +33,6 @@
     self.navigationItem.title = [NSString stringWithFormat:@"%@ - 搜索结果", _searchText];
     
     [self initNavTabBar];
-    
-//    [self initProgress];
-}
-
-- (void)initProgress {
-    UINavigationBar *navigationBar = self.navigationController.navigationBar;
-    
-    progressView = [[GSIndeterminateProgressView alloc] initWithFrame:CGRectMake(0, navigationBar.frame.size.height + NAVIGATION_BAR_HEIGHT, navigationBar.frame.size.width, 2)];
-    progressView.progressTintColor = navigationBar.barTintColor;
-    progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-    [navigationBar addSubview:progressView];
 }
 
 - (void)initNavTabBar {

@@ -7,6 +7,7 @@
 //
 
 #import "SettingsViewController.h"
+#import "DonateViewController.h"
 
 @interface SettingsViewController ()
 
@@ -38,10 +39,23 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 54;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.row) {
+        case 0:
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"mailto:chenhbc@gmail.com?subject=[寻觅]iOS客户端使用反馈"]];
+            break;
+            
+        case 2:
+            [self.navigationController pushViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"donateViewController"] animated:YES];
+            break;
+        default:
+            break;
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 @end

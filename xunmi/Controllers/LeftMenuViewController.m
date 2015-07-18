@@ -55,7 +55,7 @@
                                                          animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             break;
-        case 2:
+        case 1:
             {
                 NSString *textToShare = @"请大家登录《iOS云端与网络通讯》服务网站。";
                 NSURL *urlToShare = [NSURL URLWithString:@"http://www.iosbook3.com"];
@@ -67,7 +67,7 @@
             
             [self.sideMenuViewController hideMenuViewController];
             break;
-        case 4:
+        case 2:
             [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"settingsViewController"]]
                                                          animated:YES];
             [self.sideMenuViewController hideMenuViewController];
@@ -92,7 +92,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
-    return 5;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -110,8 +110,8 @@
         cell.selectedBackgroundView = [[UIView alloc] init];
     }
     
-    NSArray *titles = @[@"主页", @"下载", @"分享", @"打赏", @"设置"];
-    NSArray *images = @[@"IconHome", @"download", @"share", @"donate", @"IconSettings"];
+    NSArray *titles = @[@"主页", @"分享", @"设置"];
+    NSArray *images = @[@"IconHome", @"share", @"IconSettings"];
     cell.textLabel.text = titles[indexPath.row];
     cell.imageView.image = [UIImage imageNamed:images[indexPath.row]];
     
