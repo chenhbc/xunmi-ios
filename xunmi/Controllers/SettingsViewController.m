@@ -44,13 +44,30 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    switch (indexPath.row) {
+    switch (indexPath.section) {
         case 0:
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"mailto:chenhbc@gmail.com?subject=[寻觅]iOS客户端使用反馈"]];
+            switch (indexPath.row) {
+                case 0:
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"mailto:chenhbc@gmail.com?subject=[寻觅]iOS客户端使用反馈"]];
+                    break;
+                    
+                case 1:
+                    [self.navigationController pushViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"aboutViewController"] animated:YES];
+                    break;
+            }
             break;
-            
-        case 2:
-            [self.navigationController pushViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"donateViewController"] animated:YES];
+        case 1:
+            switch (indexPath.row) {
+                case 0:
+                    [self.navigationController pushViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"noticeViewController"] animated:YES];
+                    break;
+                    
+                case 1:
+                    [self.navigationController pushViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"donateViewController"] animated:YES];
+                    break;
+                default:
+                    break;
+            }
             break;
         default:
             break;

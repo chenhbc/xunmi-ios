@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE409B521B59F78D00EB1872 /* DonateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE409B511B59F78D00EB1872 /* DonateViewController.m */; };
+		CE497C771B58003E0052BDA3 /* ResourceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE497C761B58003E0052BDA3 /* ResourceDetailViewController.m */; };
 		CE50980E1B1CB4C8005FF93F /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE50980D1B1CB4C8005FF93F /* RootViewController.m */; };
 		CE6579551B41A2EA00A08A2A /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CE65794A1B41A2EA00A08A2A /* blackArrow.png */; };
 		CE6579561B41A2EA00A08A2A /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE65794B1B41A2EA00A08A2A /* blackArrow@2x.png */; };
@@ -45,6 +47,8 @@
 		CE8EE09A1B540FF100EF0946 /* MJRefreshAutoGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8EE0951B540FF100EF0946 /* MJRefreshAutoGifFooter.m */; };
 		CE8EE09B1B540FF100EF0946 /* MJRefreshAutoNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8EE0971B540FF100EF0946 /* MJRefreshAutoNormalFooter.m */; };
 		CE8EE09C1B540FF100EF0946 /* MJRefreshAutoStateFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8EE0991B540FF100EF0946 /* MJRefreshAutoStateFooter.m */; };
+		CE9A03CB1B6000B000B4F3B2 /* NoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9A03CA1B6000B000B4F3B2 /* NoticeViewController.m */; };
+		CE9A03CE1B6130C300B4F3B2 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9A03CD1B6130C300B4F3B2 /* AboutViewController.m */; };
 		CEBF839B1B1F4B0900CAEF69 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBF839A1B1F4B0900CAEF69 /* SettingsViewController.m */; };
 		CEBF83AB1B21ED9700CAEF69 /* SCNavTabBar.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CEBF83A21B21ED9700CAEF69 /* SCNavTabBar.bundle */; };
 		CEBF83AC1B21ED9700CAEF69 /* SCNavTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBF83A51B21ED9700CAEF69 /* SCNavTabBarController.m */; };
@@ -77,6 +81,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE409B501B59F78D00EB1872 /* DonateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonateViewController.h; sourceTree = "<group>"; };
+		CE409B511B59F78D00EB1872 /* DonateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonateViewController.m; sourceTree = "<group>"; };
+		CE497C751B58003E0052BDA3 /* ResourceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceDetailViewController.h; sourceTree = "<group>"; };
+		CE497C761B58003E0052BDA3 /* ResourceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceDetailViewController.m; sourceTree = "<group>"; };
 		CE50980C1B1CB4C8005FF93F /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		CE50980D1B1CB4C8005FF93F /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		CE65794A1B41A2EA00A08A2A /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
@@ -138,6 +146,10 @@
 		CE8EE0971B540FF100EF0946 /* MJRefreshAutoNormalFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MJRefreshAutoNormalFooter.m; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoNormalFooter.m; sourceTree = "<group>"; };
 		CE8EE0981B540FF100EF0946 /* MJRefreshAutoStateFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MJRefreshAutoStateFooter.h; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoStateFooter.h; sourceTree = "<group>"; };
 		CE8EE0991B540FF100EF0946 /* MJRefreshAutoStateFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MJRefreshAutoStateFooter.m; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoStateFooter.m; sourceTree = "<group>"; };
+		CE9A03C91B6000B000B4F3B2 /* NoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeViewController.h; sourceTree = "<group>"; };
+		CE9A03CA1B6000B000B4F3B2 /* NoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeViewController.m; sourceTree = "<group>"; };
+		CE9A03CC1B6130C300B4F3B2 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		CE9A03CD1B6130C300B4F3B2 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		CEBF83991B1F4B0900CAEF69 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		CEBF839A1B1F4B0900CAEF69 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		CEBF83A11B21ED9700CAEF69 /* CommonMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonMacro.h; sourceTree = "<group>"; };
@@ -475,6 +487,14 @@
 				CEBF83B01B21EE9F00CAEF69 /* SearchResultViewController.m */,
 				CE8EDF681B288653002E9FE2 /* ListViewController.h */,
 				CE8EDF691B288653002E9FE2 /* ListViewController.m */,
+				CE497C751B58003E0052BDA3 /* ResourceDetailViewController.h */,
+				CE497C761B58003E0052BDA3 /* ResourceDetailViewController.m */,
+				CE409B501B59F78D00EB1872 /* DonateViewController.h */,
+				CE409B511B59F78D00EB1872 /* DonateViewController.m */,
+				CE9A03C91B6000B000B4F3B2 /* NoticeViewController.h */,
+				CE9A03CA1B6000B000B4F3B2 /* NoticeViewController.m */,
+				CE9A03CC1B6130C300B4F3B2 /* AboutViewController.h */,
+				CE9A03CD1B6130C300B4F3B2 /* AboutViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -596,6 +616,7 @@
 				CEC244391B1B516B00B11470 /* AppDelegate.m in Sources */,
 				CE8EE0921B540FE600EF0946 /* MJRefreshBackNormalFooter.m in Sources */,
 				CE8EE07C1B540F8800EF0946 /* MJRefreshHeader.m in Sources */,
+				CE497C771B58003E0052BDA3 /* ResourceDetailViewController.m in Sources */,
 				CE8EE09B1B540FF100EF0946 /* MJRefreshAutoNormalFooter.m in Sources */,
 				CE8EE06C1B540F7800EF0946 /* UIView+MJExtension.m in Sources */,
 				CEC244361B1B516B00B11470 /* main.m in Sources */,
@@ -606,6 +627,7 @@
 				CEBF83AD1B21ED9700CAEF69 /* SCNavTabBar.m in Sources */,
 				CE8EE07A1B540F8800EF0946 /* MJRefreshComponent.m in Sources */,
 				CEBF83AE1B21ED9700CAEF69 /* SCPopView.m in Sources */,
+				CE409B521B59F78D00EB1872 /* DonateViewController.m in Sources */,
 				CEBF839B1B1F4B0900CAEF69 /* SettingsViewController.m in Sources */,
 				CE8EE06A1B540F7800EF0946 /* UIScrollView+MJExtension.m in Sources */,
 				CEC244611B1B52B500B11470 /* RESideMenu.m in Sources */,
@@ -616,11 +638,13 @@
 				CE8EE0931B540FE600EF0946 /* MJRefreshBackStateFooter.m in Sources */,
 				CEC2446F1B1B5FC800B11470 /* MainViewController.m in Sources */,
 				CE8EE09A1B540FF100EF0946 /* MJRefreshAutoGifFooter.m in Sources */,
+				CE9A03CE1B6130C300B4F3B2 /* AboutViewController.m in Sources */,
 				CEC2446E1B1B5FC800B11470 /* LeftMenuViewController.m in Sources */,
 				CEBF83AC1B21ED9700CAEF69 /* SCNavTabBarController.m in Sources */,
 				CE8EE0791B540F8800EF0946 /* MJRefreshBackFooter.m in Sources */,
 				CE8EE0861B540FC500EF0946 /* MJRefreshGifHeader.m in Sources */,
 				CEBF83B81B244D2F00CAEF69 /* SearchUtil.m in Sources */,
+				CE9A03CB1B6000B000B4F3B2 /* NoticeViewController.m in Sources */,
 				CE8EDF601B2748CD002E9FE2 /* ListView.m in Sources */,
 				CEBF83B51B243E3700CAEF69 /* GSIndeterminateProgressView.m in Sources */,
 				CE8EE07B1B540F8800EF0946 /* MJRefreshFooter.m in Sources */,
