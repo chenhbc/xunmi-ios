@@ -10,6 +10,7 @@
 		CE409B521B59F78D00EB1872 /* DonateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE409B511B59F78D00EB1872 /* DonateViewController.m */; };
 		CE497C771B58003E0052BDA3 /* ResourceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE497C761B58003E0052BDA3 /* ResourceDetailViewController.m */; };
 		CE50980E1B1CB4C8005FF93F /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE50980D1B1CB4C8005FF93F /* RootViewController.m */; };
+		CE62580D1B63E6810049F652 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE62580C1B63E6810049F652 /* MessageUI.framework */; };
 		CE6579551B41A2EA00A08A2A /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CE65794A1B41A2EA00A08A2A /* blackArrow.png */; };
 		CE6579561B41A2EA00A08A2A /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE65794B1B41A2EA00A08A2A /* blackArrow@2x.png */; };
 		CE6579571B41A2EA00A08A2A /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CE65794C1B41A2EA00A08A2A /* blueArrow.png */; };
@@ -87,6 +88,7 @@
 		CE497C761B58003E0052BDA3 /* ResourceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceDetailViewController.m; sourceTree = "<group>"; };
 		CE50980C1B1CB4C8005FF93F /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		CE50980D1B1CB4C8005FF93F /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		CE62580C1B63E6810049F652 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		CE65794A1B41A2EA00A08A2A /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
 		CE65794B1B41A2EA00A08A2A /* blackArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackArrow@2x.png"; sourceTree = "<group>"; };
 		CE65794C1B41A2EA00A08A2A /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE62580D1B63E6810049F652 /* MessageUI.framework in Frameworks */,
 				CE8EE0211B53FF3A00EF0946 /* CoreGraphics.framework in Frameworks */,
 				CE8EE01F1B53FF3200EF0946 /* Foundation.framework in Frameworks */,
 				CE8EE01D1B53FF1D00EF0946 /* UIKit.framework in Frameworks */,
@@ -242,6 +245,8 @@
 		CE8EE0181B53FE1B00EF0946 /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
+				CEC244371B1B516B00B11470 /* AppDelegate.h */,
+				CEC244381B1B516B00B11470 /* AppDelegate.m */,
 			);
 			name = Delegate;
 			sourceTree = "<group>";
@@ -391,6 +396,7 @@
 		CEC244271B1B516B00B11470 = {
 			isa = PBXGroup;
 			children = (
+				CE62580C1B63E6810049F652 /* MessageUI.framework */,
 				CE8EE0201B53FF3A00EF0946 /* CoreGraphics.framework */,
 				CE8EE01E1B53FF3200EF0946 /* Foundation.framework */,
 				CE8EE01C1B53FF1D00EF0946 /* UIKit.framework */,
@@ -422,8 +428,6 @@
 				CE8EDF581B2743A8002E9FE2 /* Views */,
 				CEBF839C1B20928A00CAEF69 /* Utils */,
 				CEC244691B1B5FC800B11470 /* Controllers */,
-				CEC244371B1B516B00B11470 /* AppDelegate.h */,
-				CEC244381B1B516B00B11470 /* AppDelegate.m */,
 				CEC2443D1B1B516B00B11470 /* Main.storyboard */,
 				CEC244401B1B516B00B11470 /* Images.xcassets */,
 				CE8EDF541B274259002E9FE2 /* LoadMoreCell.xib */,
@@ -548,6 +552,7 @@
 				TargetAttributes = {
 					CEC2442F1B1B516B00B11470 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 525EVLRD3G;
 					};
 					CEC244481B1B516C00B11470 = {
 						CreatedOnToolsVersion = 6.2;
@@ -781,9 +786,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = xunmi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -791,9 +799,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = xunmi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -252,13 +252,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="如果想支持作者的开发可以用支付宝扫描下面的二维码打赏作者" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2l6-sz-fBk">
-                                <rect key="frame" x="16" y="88" width="286" height="77"/>
+                                <rect key="frame" x="16" y="54" width="286" height="77"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="alipay" translatesAutoresizingMaskIntoConstraints="NO" id="eFH-GL-J1s">
-                                <rect key="frame" x="48" y="193" width="223" height="310"/>
+                                <rect key="frame" x="48" y="137" width="223" height="310"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="eFH-GL-J1s" secondAttribute="height" multiplier="223:310" id="Byi-Sc-kgg"/>
                                     <constraint firstAttribute="width" constant="240" id="po4-tz-JZY"/>
@@ -296,7 +296,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="「寻觅」只提供资源检索服务，并不存储任何资源内容，如有侵权内容，请联系网盘商进行删除。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2RF-iN-6xH">
                                 <rect key="frame" x="18" y="235" width="286" height="112"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="经由程序搜索所产生的任何结果皆不代表本人立场，本人不对其真实合法性以及版权负责，亦不承担任何法律责任。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fai-pT-f4f">
@@ -355,11 +355,11 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="©2015 木木兮. All Rights Reserved." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKX-0q-1Dx">
                                 <rect key="frame" x="82" y="216" width="171" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tm4-C3-svX">
-                                <rect key="frame" x="16" y="245" width="288" height="308.5"/>
+                                <rect key="frame" x="16" y="245" width="288" height="309"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <mutableString key="text">欢迎使用「寻觅」iOS客户端，「寻觅」是一款提供搜索资源的app，目前可以搜索百度网盘、微盘，以及华为网盘。你可以在主页的搜索框进行搜索。
 
@@ -384,6 +384,7 @@
                             <constraint firstAttribute="centerX" secondItem="SKX-0q-1Dx" secondAttribute="centerX" id="Vqp-ns-JEn"/>
                             <constraint firstAttribute="centerX" secondItem="crA-RU-c7u" secondAttribute="centerX" id="heN-Ku-9D7"/>
                             <constraint firstAttribute="centerX" secondItem="m7s-ON-cWe" secondAttribute="centerX" id="lmY-G9-2F1"/>
+                            <constraint firstItem="Tm4-C3-svX" firstAttribute="top" secondItem="SKX-0q-1Dx" secondAttribute="bottom" constant="10" id="r5V-tG-YFB"/>
                         </constraints>
                     </view>
                 </viewController>

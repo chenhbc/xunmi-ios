@@ -131,8 +131,7 @@
     NSData *jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
     jsonObj = [NSJSONSerialization JSONObjectWithData:jsonData
                                               options:NSJSONReadingAllowFragments error:&error];
-    
-//    [weipanViewController reloadTableViewDataSourceWithArray:jsonObj];
+
     return jsonObj;
 }
 
@@ -169,7 +168,6 @@
     jsonObj = [NSJSONSerialization JSONObjectWithData:jsonData
                                               options:NSJSONReadingAllowFragments error:&error];
     
-    //    [huaweiWangpanViewController reloadTableViewDataSourceWithArray:jsonObj];
     return jsonObj;
 }
 

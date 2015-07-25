@@ -62,10 +62,12 @@ int CURRENT_PAGE = 0;
 }
 
 - (void)addTableView {
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 460) style:UITableViewStylePlain];
+    // 高度要加上导航栏的高度和Tabbar的高度，在SCNavTabBar中定义
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(-10, 0, self.view.frame.size.width, self.view.frame.size.height + 49 + 44) style:UITableViewStylePlain];
     tableView.dataSource = self;
     tableView.delegate = self;
     self.tableViewImage = tableView;
+    
     [self.view addSubview:tableViewImage];
 }
 
@@ -85,17 +87,55 @@ int CURRENT_PAGE = 0;
         cell = [tableView dequeueReusableCellWithIdentifier:@"listViewCell"];
     }
     
+//    if (NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_7_1) {
+//        cell.contentView.frame = cell.bounds;
+//        cell.contentView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin |UIViewAutoresizingFlexibleTopMargin |UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin;
+//    }
+//    
+//    [cell setNeedsUpdateConstraints];
+//    [cell updateConstraintsIfNeeded];
+//    cell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(cell.bounds));
+//    [cell setNeedsLayout];
+//    [cell layoutIfNeeded];
+    
     // add data
     
     NSDictionary *detail = [self.imageArray objectAtIndex:indexPath.row];
-    cell.titleLabel.text = [self flattenHTML:[detail objectForKey:@"title"]];
+    NSString *title = [self flattenHTML:[detail objectForKey:@"title"]];
+    cell.titleLabel.text = title;
     cell.linkLabel.text = [detail objectForKey:@"url"];
     
-    cell.imageView.image = [UIImage imageNamed:@"unknown.png"];
-//    [cell.imageView setFrame:CGRectMake(0, 0, 50, 50)];
-//    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    cell.imageView.image = [UIImage imageNamed:[self getImage:title]];
     
     return cell;
+}
+
+- (NSString *) getImage:(NSString *) title {
+    NSString *suffix = [title pathExtension];
+    if ([suffix isEqualToString:@"xls"] || [suffix isEqualToString:@"xlsx"]) {
+        return @"excel.png";
+    } else if ([suffix isEqualToString:@"doc"] || [suffix isEqualToString:@"docx"]) {
+        return @"word.png";
+    } else if ([suffix isEqualToString:@"ppt"] || [suffix isEqualToString:@"pptx"]) {
+        return @"ppt.png";
+    } else if ([suffix isEqualToString:@"jpg"] || [suffix isEqualToString:@"jpeg"]
+                || [suffix isEqualToString:@"gif"] || [suffix isEqualToString:@"png"]
+                || [suffix isEqualToString:@"bmp"] || [suffix isEqualToString:@"ico"]) {
+        return @"picture.png";
+    } else if ([suffix isEqualToString:@"avi"] || [suffix isEqualToString:@"mp4"]
+                || [suffix isEqualToString:@"rmvb"] || [suffix isEqualToString:@"wmv"]
+                || [suffix isEqualToString:@"rm"] || [suffix isEqualToString:@"mkv"]) {
+        return @"video.png";
+    } else if ([suffix isEqualToString:@"mp3"] || [suffix isEqualToString:@"wma"]
+                || [suffix isEqualToString:@"wav"] || [suffix isEqualToString:@"flac"]
+                || [suffix isEqualToString:@"m4a"] || [suffix isEqualToString:@"ape"]) {
+        return @"music.png";
+    } else if ([suffix isEqualToString:@"pdf"]) {
+        return @"pdf.png";
+    } else if ([suffix isEqualToString:@"txt"]) {
+        return @"text.png";
+    }
+    return @"unknown.png";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -10,7 +10,6 @@
 #import "GSIndeterminateProgressView.h"
 
 @interface ResourceDetailViewController () {
-
     GSIndeterminateProgressView * progressView;
 }
 
@@ -32,30 +31,34 @@
     
     [progressView startAnimating];
     
-    // yes:根据webview自适应，NO：根据内容自适应
-//    [self.webView setScalesPageToFit:NO];
-//    self.webView.scalesPageToFit = NO;
+    UIButton* rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0,0,30,30)];
+    [rightButton setImage:[UIImage imageNamed:@"IconShare.png"]forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(shareTo)forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem*rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
+    
+    self.navigationItem.rightBarButtonItem = rightItem;
+    
+    // 去掉网页底部的黑色背景
+    [self.webView setOpaque:NO];
+    [self.webView setBackgroundColor:[UIColor clearColor]];
+
     [self.webView loadRequest:request];
+}
+
+- (void)shareTo {
+    NSString *textToShare = self.name;
+    NSURL *urlToShare = [NSURL URLWithString:self.url];
+    NSArray *activityItems = @[textToShare, urlToShare];
+    
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
+    [self presentViewController:activityVC animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-//-(void)webViewDidFinishLoad:(UIWebView *)webView{
-//    CGFloat webViewHeight=[webView.scrollView contentSize].height;
-//    CGRect newFrame = webView.frame;
-//    newFrame.size.height = webViewHeight;
-//    webView.frame = newFrame;
-//}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView
-{
-//    //修改服务器页面的meta的值
-//    NSString *meta = [NSString stringWithFormat:@"document.getElementsByName(\"viewport\")[0].content = \"width=%f, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\"", webView.frame.size.width];
-//    [webView stringByEvaluatingJavaScriptFromString:meta];
-    
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
     // 利用webview中的scrollview的zoom特性，这个方法会让网页内容变小
     CGSize contentSize = self.webView.scrollView.contentSize;
     CGSize viewSize = self.view.bounds.size;
@@ -65,14 +68,6 @@
     self.webView.scrollView.minimumZoomScale = rw;
     self.webView.scrollView.maximumZoomScale = rw;
     self.webView.scrollView.zoomScale = rw;
-    
-//    NSString *javascript = [NSString stringWithFormat:@"var viewPortTag=document.createElement('meta');  \
-//                  viewPortTag.id='viewport';  \
-//                  viewPortTag.name = 'viewport';  \
-//                  viewPortTag.content = 'width=%d; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;';  \
-//                  document.getElementsByTagName('head')[0].appendChild(viewPortTag);" , (int)self.webView.bounds.size.width];
-//    
-//    [self.webView stringByEvaluatingJavaScriptFromString:javascript];
     
     [progressView stopAnimating];
 }

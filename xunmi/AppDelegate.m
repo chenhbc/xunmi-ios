@@ -54,4 +54,9 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+-(NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    //禁止横屏
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 @end

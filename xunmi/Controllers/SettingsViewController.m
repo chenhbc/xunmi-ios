@@ -48,7 +48,7 @@
         case 0:
             switch (indexPath.row) {
                 case 0:
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"mailto:chenhbc@gmail.com?subject=[寻觅]iOS客户端使用反馈"]];
+                    [self sendmail];
                     break;
                     
                 case 1:
@@ -73,6 +73,47 @@
             break;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)sendmail {
+    // 1. 先判断能否发送邮件
+    if (![MFMailComposeViewController canSendMail]) {NSLog(@"Can not send email.");
+        // 提示用户设置邮箱
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示信息" message:@"您尚未设置邮箱客户端，您可以主动发送反馈意见到「chenhbc@gmail.com」，谢谢！" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
+    
+    // 2. 实例化邮件控制器，准备发送邮件
+    MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
+    
+    // 1) 主题 xxx的工作报告
+    [controller setSubject:@"[寻觅]iOS客户端使用反馈"];
+    // 2) 收件人
+    [controller setToRecipients:@[@"chenhbc@gmail.com"]];
+
+    // 7) 设置代理
+    [controller setMailComposeDelegate:self];
+    
+    // 显示控制器
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+//同样要记得发完邮件记得调用代理方法关闭窗口
+
+#pragma mark - 邮件代理方法
+/**
+ MFMailComposeResultCancelled,      取消
+ MFMailComposeResultSaved,          保存邮件
+ MFMailComposeResultSent,           已经发送
+ MFMailComposeResultFailed          发送失败
+ */
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    // 根据不同状态提示用户
+    NSLog(@"%d", result);
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

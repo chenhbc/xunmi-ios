@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 
-@interface SettingsViewController : UITableViewController
+@interface SettingsViewController : UITableViewController<MFMailComposeViewControllerDelegate>
 
 - (IBAction)backBarButtonPressed:(id)sender;
 
