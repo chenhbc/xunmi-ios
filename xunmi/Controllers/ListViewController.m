@@ -111,31 +111,36 @@ int CURRENT_PAGE = 0;
 }
 
 - (NSString *) getImage:(NSString *) title {
-    NSString *suffix = [title pathExtension];
-    if ([suffix isEqualToString:@"xls"] || [suffix isEqualToString:@"xlsx"]) {
+    // NSString *suffix = [title pathExtension];
+    if ([self hasSuffix:title :@"xls"] || [self hasSuffix:title :@"xlsx"]) {
         return @"excel.png";
-    } else if ([suffix isEqualToString:@"doc"] || [suffix isEqualToString:@"docx"]) {
+    } else if ([self hasSuffix:title :@"doc"] || [self hasSuffix:title :@"docx"]) {
         return @"word.png";
-    } else if ([suffix isEqualToString:@"ppt"] || [suffix isEqualToString:@"pptx"]) {
+    } else if ([self hasSuffix:title :@"ppt"] || [self hasSuffix:title :@"pptx"]) {
         return @"ppt.png";
-    } else if ([suffix isEqualToString:@"jpg"] || [suffix isEqualToString:@"jpeg"]
-                || [suffix isEqualToString:@"gif"] || [suffix isEqualToString:@"png"]
-                || [suffix isEqualToString:@"bmp"] || [suffix isEqualToString:@"ico"]) {
+    } else if ([self hasSuffix:title :@"jpg"] || [self hasSuffix:title :@"jpeg"]
+                || [self hasSuffix:title :@"gif"] || [self hasSuffix:title :@"png"]
+                || [self hasSuffix:title :@"bmp"] || [self hasSuffix:title :@"ico"]) {
         return @"picture.png";
-    } else if ([suffix isEqualToString:@"avi"] || [suffix isEqualToString:@"mp4"]
-                || [suffix isEqualToString:@"rmvb"] || [suffix isEqualToString:@"wmv"]
-                || [suffix isEqualToString:@"rm"] || [suffix isEqualToString:@"mkv"]) {
+    } else if ([self hasSuffix:title :@"avi"] || [self hasSuffix:title :@"mp4"]
+                || [self hasSuffix:title :@"rmvb"] || [self hasSuffix:title :@"wmv"]
+                || [self hasSuffix:title :@"rm"] || [self hasSuffix:title :@"mkv"]) {
         return @"video.png";
-    } else if ([suffix isEqualToString:@"mp3"] || [suffix isEqualToString:@"wma"]
-                || [suffix isEqualToString:@"wav"] || [suffix isEqualToString:@"flac"]
-                || [suffix isEqualToString:@"m4a"] || [suffix isEqualToString:@"ape"]) {
+    } else if ([self hasSuffix:title :@"mp3"] || [self hasSuffix:title :@"wma"]
+                || [self hasSuffix:title :@"wav"] || [self hasSuffix:title :@"flac"]
+                || [self hasSuffix:title :@"m4a"] || [self hasSuffix:title :@"ape"]) {
         return @"music.png";
-    } else if ([suffix isEqualToString:@"pdf"]) {
+    } else if ([self hasSuffix:title :@"pdf"]) {
         return @"pdf.png";
-    } else if ([suffix isEqualToString:@"txt"]) {
+    } else if ([self hasSuffix:title :@"txt"] || [self hasSuffix:title :@"epub"]
+                || [self hasSuffix:title :@"mobi"]) {
         return @"text.png";
     }
     return @"unknown.png";
+}
+
+- (BOOL) hasSuffix:(NSString *) str :(NSString *) suffix{
+    return [str rangeOfString:suffix options:NSCaseInsensitiveSearch].location != NSNotFound;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
