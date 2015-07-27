@@ -57,7 +57,7 @@ int PAGE_NUMBER = 10;
 - (NSString *)searchBaiduYun:(NSString *) keyword:(int) page {
     // %@/search?q=%@+site:yun.baidu.com+OR+site:pan.baidu.com&first=%d
     // 暂不知道必应的或者搜索用法
-    NSString *urlString = [NSString stringWithFormat:@"%@/search?q=%@+site:pan.baidu.com&first=%d", kUrl, [self getKeywordsUrl:keyword], page * PAGE_NUMBER];
+    NSString *urlString = [NSString stringWithFormat:@"%@/search?q=%@+site:pan.baidu.com&first=%d&mkt=zh-CN", kUrl, [self getKeywordsUrl:keyword], page * PAGE_NUMBER];
     
     return [self search:urlString];
 }
@@ -69,7 +69,7 @@ int PAGE_NUMBER = 10;
 }
 
 - (NSString *)searchHuaweiWangpan:(NSString *) keyword:(int) page {
-    NSString *urlString = [NSString stringWithFormat:@"%@/search?q=%@+site:dl.dbank.com&first=%d", kUrl, [self getKeywordsUrl:keyword], page * PAGE_NUMBER];
+    NSString *urlString = [NSString stringWithFormat:@"%@/search?q=%@+site:dl.dbank.com&first=%d&mkt=zh-CN", kUrl, [self getKeywordsUrl:keyword], page * PAGE_NUMBER];
     
     return [self search:urlString];
 }
