@@ -13,7 +13,11 @@
 
 @end
 
-NSString * const kUrl = @"www.jwss.cc";
+// 搜索引擎
+NSString * const kUrl = @"www.bing.com";
+
+// 匹配标题和URL正则
+NSString * const kRegex = @"<li.*?class=\"b_algo\".*?>.*?<h2>.*?<a.*?href=\"(.*?)\".*?>(.*?)</a>.*?</h2>.*?<div.*?class=\"b_caption\">.*?</div>.*?</li>";
 
 int PAGE_NUMBER = 10;
 
@@ -38,8 +42,9 @@ int PAGE_NUMBER = 10;
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     
-    [request setValue:@"Mozilla/5.0" forHTTPHeaderField:@"User-Agent"];
-    [request setValue:@"_GFTOKEN=8f1a268d038ac2125bc84471" forHTTPHeaderField:@"Cookie"];
+    [request setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.89 Safari/537.36" forHTTPHeaderField:@"User-Agent"];
+    [request setValue:@"MUID=06967142A0EA6413382876B2A16065DC; SRCHUID=V=2&GUID=537664C6A2AE43C095A2B01D4473E623; MUIDB=06967142A0EA6413382876B2A16065DC; SRCHD=AF=QBRE; SRCHUSR=AUTOREDIR=0&GEOVAR=&DOB=20150726; _FP=BDCE=130823885395050309&BDCEH=F9228750531A508EB41F30CA9F1D3059; SRCHHPGUSR=CW=1264&CH=396&DPR=2" forHTTPHeaderField:@"Cookie"];
+
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     
     NSString *returnData = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
@@ -50,7 +55,9 @@ int PAGE_NUMBER = 10;
 }
 
 - (NSString *)searchBaiduYun:(NSString *) keyword:(int) page {
-    NSString *urlString = [NSString stringWithFormat:@"%@/?q=%@+site:yun.baidu.com+OR+site:pan.baidu.com&pn=%d", kUrl, [self getKeywordsUrl:keyword], page * PAGE_NUMBER];
+    // %@/search?q=%@+site:yun.baidu.com+OR+site:pan.baidu.com&first=%d
+    // 暂不知道必应的或者搜索用法
+    NSString *urlString = [NSString stringWithFormat:@"%@/search?q=%@+site:pan.baidu.com&first=%d", kUrl, [self getKeywordsUrl:keyword], page * PAGE_NUMBER];
     
     return [self search:urlString];
 }
@@ -62,9 +69,117 @@ int PAGE_NUMBER = 10;
 }
 
 - (NSString *)searchHuaweiWangpan:(NSString *) keyword:(int) page {
-    NSString *urlString = [NSString stringWithFormat:@"%@/?q=%@+site:dl.dbank.com+OR+site:dl.vmall.com&pn=%d", kUrl, [self getKeywordsUrl:keyword], page * PAGE_NUMBER];
+    NSString *urlString = [NSString stringWithFormat:@"%@/search?q=%@+site:dl.dbank.com&first=%d", kUrl, [self getKeywordsUrl:keyword], page * PAGE_NUMBER];
     
     return [self search:urlString];
+}
+
+- (NSArray *) searchOnBaiduYun:(NSString *) searchText:(int) page {
+    NSArray *jsonObj;
+    
+    NSString *resultStr = [self searchBaiduYun:searchText : page];
+    
+    NSError *error;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:kRegex
+                                                                           options:NSRegularExpressionCaseInsensitive
+                                                                             error:&error];
+    NSArray *arrayOfAllMatches = [regex matchesInString:resultStr options:0 range:NSMakeRange(0, [resultStr length])];
+    
+    NSString *jsonStr = @"[";
+    
+    for (NSTextCheckingResult *match in arrayOfAllMatches) {NSLog(@"match:%@", match);
+        // match.range
+        NSString *resultUrl = [resultStr substringWithRange:[match rangeAtIndex:1]];
+        NSString *resultTitle = [resultStr substringWithRange:[match rangeAtIndex:2]];
+        
+        if (![jsonStr isEqualToString:@"["]) {
+            jsonStr = [jsonStr stringByAppendingString:@","];
+        }
+        jsonStr = [jsonStr stringByAppendingString:[NSString stringWithFormat:@"{\"url\":\"%@\", \"title\":\"%@\"}", resultUrl, resultTitle]];
+    }
+    
+    jsonStr = [jsonStr stringByAppendingString:@"]"];
+    if (error) {
+        NSLog(@"Has error");
+    }
+    
+    NSData *jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
+    jsonObj = [NSJSONSerialization JSONObjectWithData:jsonData
+                                              options:NSJSONReadingAllowFragments error:&error];
+    
+    //    [baiduYunViewController reloadTableViewDataSourceWithArray:jsonObj];
+    return jsonObj;
+}
+
+- (NSArray *)searchOnWeipan:(NSString *) searchText:(int) page {
+    NSArray *jsonObj;
+    NSString *resultStr = [[[SearchUtil alloc] init] searchWeipan:searchText : page];
+    
+    NSError *error;
+    NSString *regulaStr = @"<div class=\"sort_name_detail\"><a href=\"(.+?)\" target=\"_blank\" title=\"(.+?)\">";
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regulaStr
+                                                                           options:NSRegularExpressionCaseInsensitive
+                                                                             error:&error];
+    NSArray *arrayOfAllMatches = [regex matchesInString:resultStr options:0 range:NSMakeRange(0, [resultStr length])];
+    
+    NSString *jsonStr = @"[";
+    
+    for (NSTextCheckingResult *match in arrayOfAllMatches) {
+        // match.range
+        NSString *resultUrl = [resultStr substringWithRange:[match rangeAtIndex:1]];
+        NSString *resultTitle = [resultStr substringWithRange:[match rangeAtIndex:2]];
+        
+        if (![jsonStr isEqualToString:@"["]) {
+            jsonStr = [jsonStr stringByAppendingString:@","];
+        }
+        jsonStr = [jsonStr stringByAppendingString:[NSString stringWithFormat:@"{\"url\":\"%@\", \"title\":\"%@\"}", resultUrl, resultTitle]];
+    }
+    
+    jsonStr = [jsonStr stringByAppendingString:@"]"];
+    if (error) {
+        NSLog(@"Has error");
+    }
+    
+    NSData *jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
+    jsonObj = [NSJSONSerialization JSONObjectWithData:jsonData
+                                              options:NSJSONReadingAllowFragments error:&error];
+    
+    return jsonObj;
+}
+
+- (NSArray *) searchOnHuaweiWangpan:(NSString *) searchText: (int) page {
+    NSArray *jsonObj;
+    NSString *resultStr = [[[SearchUtil alloc] init] searchHuaweiWangpan:searchText : page];
+    
+    NSError *error;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:kRegex
+                                                                           options:NSRegularExpressionCaseInsensitive
+                                                                             error:&error];
+    NSArray *arrayOfAllMatches = [regex matchesInString:resultStr options:0 range:NSMakeRange(0, [resultStr length])];
+    
+    NSString *jsonStr = @"[";
+    
+    for (NSTextCheckingResult *match in arrayOfAllMatches) {
+        // match.range
+        NSString *resultUrl = [resultStr substringWithRange:[match rangeAtIndex:1]];
+        NSString *resultTitle = [resultStr substringWithRange:[match rangeAtIndex:2]];
+        
+        if (![jsonStr isEqualToString:@"["]) {
+            jsonStr = [jsonStr stringByAppendingString:@","];
+        }
+        jsonStr = [jsonStr stringByAppendingString:[NSString stringWithFormat:@"{\"url\":\"%@\", \"title\":\"%@\"}", resultUrl, resultTitle]];
+    }
+    
+    jsonStr = [jsonStr stringByAppendingString:@"]"];
+    if (error) {
+        NSLog(@"Has error");
+    }
+    
+    NSData *jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
+    jsonObj = [NSJSONSerialization JSONObjectWithData:jsonData
+                                              options:NSJSONReadingAllowFragments error:&error];
+    
+    return jsonObj;
 }
 
 @end

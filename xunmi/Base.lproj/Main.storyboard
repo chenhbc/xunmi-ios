@@ -251,13 +251,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="如果想支持作者的开发可以用支付宝扫描下面的二维码打赏作者" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2l6-sz-fBk">
-                                <rect key="frame" x="16" y="54" width="286" height="77"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="如果想支持作者的开发可以用支付宝扫描下面的二维码打赏作者(长按图片保存)" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2l6-sz-fBk">
+                                <rect key="frame" x="16" y="56" width="587" height="77"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="alipay" translatesAutoresizingMaskIntoConstraints="NO" id="eFH-GL-J1s">
+                            <imageView multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="alipay" translatesAutoresizingMaskIntoConstraints="NO" id="eFH-GL-J1s">
                                 <rect key="frame" x="48" y="137" width="223" height="310"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="eFH-GL-J1s" secondAttribute="height" multiplier="223:310" id="Byi-Sc-kgg"/>
@@ -276,6 +276,9 @@
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="imageView" destination="eFH-GL-J1s" id="imm-yH-THP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tEU-61-g2s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -367,7 +370,7 @@
 
 「寻觅」并不是一款搜索引擎，所有搜索结果均来源于第三方搜索引擎。
 
-其中百度网盘和华为网盘的搜索结果由搜索引擎提供，微盘的搜索结果有微盘官网的搜索引擎提供。
+其中百度网盘和华为网盘的搜索结果由微软必应提供，微盘的搜索结果有微盘官网的搜索引擎提供。
 
 另外，应用内的一些图标取自WPS。
 

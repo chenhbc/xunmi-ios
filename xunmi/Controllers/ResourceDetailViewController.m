@@ -42,7 +42,26 @@
     [self.webView setOpaque:NO];
     [self.webView setBackgroundColor:[UIColor clearColor]];
 
+    // 百度网盘需要设置Cookie，否则会到登录页面
+    [self setCookie];
     [self.webView loadRequest:request];
+}
+
+//设置cookie
+- (void)setCookie {
+    NSMutableDictionary *cookiePropertiesUser = [NSMutableDictionary dictionary];
+    [cookiePropertiesUser setObject:@"BAIDUID=4187BFC228CB0C2737E72DFDBE11E62F:FG=1; expires=Mon, 25-Jul-16 12:18:54 GMT; max-age=31536000;" forKey:NSHTTPCookieName];
+    [cookiePropertiesUser setObject:@".baidu.com" forKey:NSHTTPCookieDomain];
+    [cookiePropertiesUser setObject:@"/" forKey:NSHTTPCookiePath];
+    [cookiePropertiesUser setObject:@"1" forKey:NSHTTPCookieVersion];
+    
+    // set expiration to one month from now or any NSDate of your choosing
+    // this makes the cookie sessionless and it will persist across web sessions and app launches
+    /// if you want the cookie to be destroyed when your app exits, don't set this
+    [cookiePropertiesUser setObject:[[NSDate date] dateByAddingTimeInterval:2629743] forKey:NSHTTPCookieExpires];
+    
+    NSHTTPCookie *cookieuser = [NSHTTPCookie cookieWithProperties:cookiePropertiesUser];
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookieuser];
 }
 
 - (void)shareTo {

@@ -57,8 +57,8 @@
             break;
         case 1:
             {
-                NSString *textToShare = @"请大家登录《iOS云端与网络通讯》服务网站。";
-                NSURL *urlToShare = [NSURL URLWithString:@"http://www.iosbook3.com"];
+                NSString *textToShare = @"「寻觅」网盘搜索iOS客户端下载地址。";
+                NSURL *urlToShare = [NSURL URLWithString:@"https://itunes.apple.com/cn/app/xun-mi-wang-pan-sou-suo/id1023209292?l=zh&ls=1&mt=8"];
                 NSArray *activityItems = @[textToShare, urlToShare];
                 
                 UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];

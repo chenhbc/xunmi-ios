@@ -20,4 +20,10 @@
 
 - (NSString *)searchHuaweiWangpan:(NSString *) keyword:(int) page;
 
+- (NSArray *) searchOnBaiduYun:(NSString *) searchText:(int) page;
+
+- (NSArray *)searchOnWeipan:(NSString *) searchText:(int) page;
+
+- (NSArray *) searchOnHuaweiWangpan:(NSString *) searchText: (int) page;
+
 @end

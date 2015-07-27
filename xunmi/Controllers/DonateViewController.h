@@ -10,4 +10,6 @@
 
 @interface DonateViewController : UIViewController
 
+@property (nonatomic, retain) IBOutlet UIImageView *imageView;
+
 @end
