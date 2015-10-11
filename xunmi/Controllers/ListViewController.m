@@ -128,13 +128,16 @@ int CURRENT_PAGE = 0;
         return @"video.png";
     } else if ([self hasSuffix:title :@"mp3"] || [self hasSuffix:title :@"wma"]
                 || [self hasSuffix:title :@"wav"] || [self hasSuffix:title :@"flac"]
-                || [self hasSuffix:title :@"m4a"] || [self hasSuffix:title :@"ape"]) {
+                || [self hasSuffix:title :@"m4a"] || [self hasSuffix:title :@"ape"]
+                || [self hasSuffix:title :@"mv"]) {
         return @"music.png";
     } else if ([self hasSuffix:title :@"pdf"]) {
         return @"pdf.png";
     } else if ([self hasSuffix:title :@"txt"] || [self hasSuffix:title :@"epub"]
                 || [self hasSuffix:title :@"mobi"]) {
         return @"text.png";
+    } else if ([self hasSuffix:title :@"zip"]) {
+        return @"folder.png";
     }
     return @"unknown.png";
 }
